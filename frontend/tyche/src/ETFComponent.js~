@@ -25,19 +25,23 @@ export default class ETFComponent extends Component {
                 {this.props.equity} 
 
             </div> 
+
             <div className="d-flex flex-column">
+
             <ButtonGroup toggle className="mt-3">
-            <ToggleButton type="radio" name="radio" defaultChecked value="1">
-            buy
-            </ToggleButton>
-            <ToggleButton type="radio" name="radio" value="2">
-            Radio
-            </ToggleButton>
-            <ToggleButton type="radio" name="radio" value="3">
-            Radio
-            </ToggleButton>
-            </ButtonGroup>
+                <togglebutton type="radio" name="radio" defaultchecked value="1">
+                    Buy - {this.props.buyCount}
+                </togglebutton>
+                <togglebutton type="radio" name="radio" value="2">
+                    Hold - {this.props.holdCount}
+                </togglebutton>
+                <togglebutton type="radio" name="radio" value="3">
+                    Sell - {this.props.sellCount}
+                </togglebutton>
+                </buttongroup>
             </div>
+
+            {/*
 
             <div className="buyField"> 
             Buy - {this.props.buyCount}
@@ -50,6 +54,8 @@ export default class ETFComponent extends Component {
             <div className="sellField"> 
             Sell - {this.props.sellCount}
             </div> 
+
+            */ } 
 
             </div>
         );
