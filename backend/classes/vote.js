@@ -17,6 +17,15 @@ class vote {
         if(this.weight === -1) throw new EvalError("Vote must be executed before calculating weight.");
         return this.weight * this.vote;
     }
+
+    collect() {
+        return {
+            vote: this.vote,
+            weight: this.weight,
+            price: this.price,
+            executed: this.executed
+        }
+    }
 }
 
 module.exports = vote;

@@ -1,10 +1,10 @@
-const users = require("./users");
-
 const getEvents = (state) => {
+    const _findUserById = id => {
+        return state.collect().users.find(u => u.id === id);
+    }
+
     const login = (req, res) => {
-        const user = users.find(user => {
-            return user.username === req.username && user.password === req.password;
-        });
+        const user = state.collect().users.find(u => u.authenticate(req.username, req.password));
         res.send({
             id: user ? user.id : -1
         });
@@ -14,17 +14,7 @@ const getEvents = (state) => {
         const votes = state[req.fund].votes;
         const findVote = voteType => voteType.findIndex(user => user === req.user) !== -1;
         if(!findVote(votes.buy) && !findVote(votes.hold) && !findVotes(votes.sell)) {
-            switch(req.vote) {
-                case -1: 
-                    votes.sell.push(req.user);
-                    break;
-                case 0:
-                    votes.hold.push(req.user);
-                    break;
-                case 1:
-                    votes.buy.push(req.user);
-                    break;
-            }
+            votes.push(_findUserById(req.user).vote(req.fund, req.vote));
             res.send({
                 status: true
             });
@@ -36,7 +26,7 @@ const getEvents = (state) => {
     }
     
     const getstate = (req, res) => {
-        res.send(state);
+        res.send(state.collect());
     }
 
     const events = {

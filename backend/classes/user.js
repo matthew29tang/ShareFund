@@ -16,6 +16,7 @@ class user {
 
     vote(index, v) {
         this.currentVotes[index] = new vote(v);
+        return this.currentVotes[index];
     }
 
     _calculateAverageWeights(index) {
@@ -41,6 +42,16 @@ class user {
         this.currentVotes[index].execute(price, weight);
         this.history[index].push(this.currentVotes[index]);
         this.currentVotes[index] = null;
+    }
+
+    collect() {
+        return {
+            id: this.id,
+            history: this.history.map(fund => {
+                return fund.map(v => v.collect());
+            }),
+            currentVote: this.currentVote
+        }
     }
 }
 

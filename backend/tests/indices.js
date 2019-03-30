@@ -7,3 +7,4 @@ console.log(obj);
 
 const arr2 = new indices().generateBlank(() => null);
 console.log(arr2);
+console.log(arr2.map((val, i) => i));
