@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './Dashboard.css';
 
 import ETFComponent from './ETFComponent';
@@ -32,12 +31,12 @@ class Dashboard extends Component {
                     let equity   = quantity * price; 
                     
                     return (<ETFComponent
-                                etfname="{key}" 
-                                quantity="{quantity}" 
-                                equity="{equity}" 
-                                buyCount="{buyCount}" 
-                                holdCount="{holdCount}" 
-                                sellCount="{sellCount}" 
+                                etfname={key}
+                                quantity={quantity}
+                                equity={equity} 
+                                buyCount={buyCount} 
+                                holdCount={holdCount}
+                                sellCount={sellCount}
                             />); 
                                 
 
