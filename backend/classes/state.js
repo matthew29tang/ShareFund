@@ -28,7 +28,7 @@ class state {
                 price: fund.price,
                 quantity: fund.quantity
             }
-        })
+        });
         const users = this.state.users.map(u => u.collect());
         return {
             funds: funds,

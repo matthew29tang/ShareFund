@@ -5,15 +5,12 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const port = 8080;
-//use cors 
 
-
-var cors = require('cors');
+const cors = require('cors');
 const state = require("./classes/state");
 
 const currentState = new state();
-app.use(cors);
-
+app.use(cors());
 
 app.use(bodyParser.urlencoded({
     extended: true
