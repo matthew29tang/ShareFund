@@ -12,7 +12,7 @@ var cors = require('cors');
 const state = require("./classes/state");
 
 const currentState = new state();
-app.use(cors);
+app.use(cors());
 
 
 app.use(bodyParser.urlencoded({
