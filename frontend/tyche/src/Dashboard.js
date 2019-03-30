@@ -38,10 +38,8 @@ class Dashboard extends Component {
                                 holdCount={holdCount}
                                 sellCount={sellCount}
                             />); 
-                                
 
                 }); 
-
                 this.setState({stockData: ETFList}); 
             });
 
@@ -49,12 +47,10 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="Dashboard">
-
-
-
-
-
+      <div className="dash-wrapper">
+        <div className="container"> 
+            {this.state.stockData}
+        </div> 
       </div>
     );
   }
