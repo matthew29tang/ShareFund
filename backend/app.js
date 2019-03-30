@@ -11,10 +11,6 @@ const state = require("./classes/state");
 
 const currentState = new state();
 app.use(cors());
-<<<<<<< HEAD
-
-=======
->>>>>>> f1c19af8729f6f8c1aedb546534fdcd1c1af2b0b
 
 app.use(bodyParser.urlencoded({
     extended: true
