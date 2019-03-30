@@ -1,6 +1,6 @@
 class Globals {
     constructor() {
-      this.host = "http://localhost:3000/";
+      this.host = "http://localhost:8080/";
     }
   }
   
