@@ -13,7 +13,7 @@ const getEvents = (state) => {
     }
     
     const vote = (req, res) => {
-        const votes = state.funds[req.fund].votes;
+        const votes = state.collect().funds[req.fund].votes;
         const findVote = voteType => voteType.findIndex(user => user === req.user) !== -1;
         if(!findVote(votes.buy) && !findVote(votes.hold) && !findVotes(votes.sell)) {
             votes.push(_findUserById(req.user).vote(req.fund, req.vote));
