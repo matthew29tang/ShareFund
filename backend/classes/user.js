@@ -23,11 +23,14 @@ class user {
     }
 
     _calculateAveragePrice(index) {
-
+        const total = this.history[index].map(v => v.weight).reduce((a, b) => a + b);
+        return this.history[index].map(v => v.weight * v.price / total).reduce((a, b) => a + b) / this.history[index].length;
     }
 
-    calculateWeight(prices) { // Current price
-
+    calculateWeight(prices) { // Current prices
+        if(!Object.keys(this.history).reduce((a, b) => a && this.history[b].length > 0, true)) return 0.5;
+        const rawWeight = Object.keys(prices).map(i => (this._calculateAveragePrice(i) - prices[i]) * this._calculateAverageWeights(i));
+        return 1 / (1 + Math.exp(-rawWeight));
     }
 
     getCurrentVotes() {
