@@ -72,21 +72,30 @@ class Dashboard extends Component {
 
         */
         //fetch the result from the api. 
-        console.log("hello?");
-        fetch(Globals.host + "getState")
+
+        
+        fetch(Globals.host + "getState", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            
+            })
             .then(results => { 
-                console.log(results);
-                results.json(); 
+                return results.json(); 
             }).then(data => { 
+              
+                let ETFList = Object.keys(data.funds).map(key => { 
 
-                let ETFList = Object.keys(data.results).map(key => { 
+                    let buyCount  = data.funds[key].votes.buy; 
 
-                    let buyCount  = data.results[key].votes.buy.length; 
-                    let holdCount = data.results[key].votes.hold.length; 
-                    let sellCount = data.results[key].votes.sell.length; 
+                    console.log(data.funds[key]);
+                    let holdCount = data.funds[key].votes.hold; 
+                    let sellCount = data.funds[key].votes.sell; 
 
-                    let price = data.results[key].price; 
-                    let quantity = data.results[key].quantity; 
+                    let price = data.funds[key].price; 
+                    let quantity = data.funds[key].quantity; 
                     let equity   = quantity * price; 
                     
                     return (<ETFComponent
@@ -102,7 +111,6 @@ class Dashboard extends Component {
                 this.setState({stockData: ETFList}); 
             });
             
-
     }
 
   render() {
