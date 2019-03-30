@@ -4,6 +4,12 @@
     padding: 0; 
 }
 .quantityIndicator { 
-
-
+    flex-grow: 1;
+}
+.ETFComponent { 
+    display: flex;
+    align-items: stretch;
+}
+.toggleGroup { 
+    flex-grow: 4; 
 }
