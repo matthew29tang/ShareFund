@@ -14,16 +14,13 @@ export default class ETFComponent extends Component {
             <div className="ETFComponent">
 
             <span className="ETFName"> 
-            {this.props.etfname}
+                {this.props.etfname}
             </span> 
 
-
             <div className="quantityIndicator"> 
-
                 {this.props.quantity}
                 <br /> 
                 {this.props.equity} 
-
             </div> 
 
             <div className="d-flex flex-column">

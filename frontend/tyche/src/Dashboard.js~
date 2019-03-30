@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './Dashboard.css';
 
+import ETFComponent from './ETFComponent';
+
 class Dashboard extends Component {
 
     constructor() { 
@@ -17,9 +19,9 @@ class Dashboard extends Component {
         fetch("./getState")
             .then(results => { 
                 results.json(); 
-            }).then (data => { 
+            }).then(data => { 
 
-                Object.keys(data.results).map(key => { 
+                let ETFList = Object.keys(data.results).map(key => { 
 
                     let buyCount  = data.results[key].votes.buy.length; 
                     let holdCount = data.results[key].votes.hold.length; 
@@ -27,12 +29,22 @@ class Dashboard extends Component {
 
                     let price = data.results[key].price; 
                     let quantity = data.results[key].quantity; 
+                    let equity   = quantity * price; 
                     
+                    return (<ETFComponent
+                                etfname="{key}" 
+                                quantity="{quantity}" 
+                                equity="{equity}" 
+                                buyCount="{buyCount}" 
+                                holdCount="{holdCount}" 
+                                sellCount="{sellCount}" 
+                            />); 
+                                
 
                 }); 
 
-                let item = data.results.map(); 
-            })
+                this.setState({stockData: ETFList}); 
+            });
 
     }
 
