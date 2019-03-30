@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Dashboard.css';
-
+import Globals from './globals.js'
 import ETFComponent from './ETFComponent';
 
 class Dashboard extends Component {
@@ -15,7 +15,7 @@ class Dashboard extends Component {
     componentDidMount() { 
         
         //fetch the result from the api. 
-        fetch("./getState")
+        fetch(Globals.host + "getState")
             .then(results => { 
                 results.json(); 
             }).then(data => { 
