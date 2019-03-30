@@ -26,7 +26,7 @@ class user {
 
     }
 
-    calculateWeight(price) { // Current price
+    calculateWeight(prices) { // Current price
 
     }
 
@@ -34,7 +34,8 @@ class user {
         return this.currentVotes;
     }
 
-    executeVote(index, price) {
+    executeVote(index, price, weight) {
+        this.currentVotes[index].execute(price, weight);
         this.history[index].push(this.currentVotes[index]);
         this.currentVotes[index] = null;
     }
