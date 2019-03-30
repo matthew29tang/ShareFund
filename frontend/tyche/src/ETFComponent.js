@@ -23,7 +23,7 @@ export default class ETFComponent extends Component {
             body: JSON.stringify({
               fund: this.props.etfname,
               user: Globals.UID,
-              vote: 1
+              vote: e.target.value
             })
           });
     }
