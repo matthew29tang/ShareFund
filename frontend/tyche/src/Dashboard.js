@@ -12,11 +12,71 @@ class Dashboard extends Component {
         }
     }
     
+    
     componentDidMount() { 
+
+        /*
+        let dummy = { 
+            SPY: { 
+                votes: {
+                    buy: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+                    hold: [1, 1],
+                    sell: [1, 1, 1, 1, 1 ], 
+                },
+                quantity: 400, 
+                price: 49.21
+            },
+            VPX: { 
+                votes: {
+                    buy: [1, 1, 1,],
+                    hold: [],
+                    sell: [1], 
+                },
+                quantity: 800, 
+                price: 19.21
+            },
+            VOX: { 
+                votes: {
+                    buy: [1, 1, 1,],
+                    hold: [],
+                    sell: [1], 
+                },
+                quantity: 800, 
+                price: 19.21
+            },
+        }
         
+        
+        let ETFList = Object.keys(dummy).map(key => { 
+
+            let buyCount  = dummy[key].votes.buy.length; 
+            let holdCount = dummy[key].votes.hold.length; 
+            let sellCount = dummy[key].votes.sell.length; 
+
+            let price = dummy[key].price; 
+            let quantity = dummy[key].quantity; 
+            let equity   = quantity * price; 
+            
+            return (<ETFComponent
+                        etfname={key}
+                        quantity={quantity}
+                        equity={equity} 
+                        buyCount={buyCount} 
+                        holdCount={holdCount}
+                        sellCount={sellCount}
+                    />); 
+
+        }); 
+
+        this.setState({stockData: ETFList}); 
+
+        */
         //fetch the result from the api. 
+        console.log("hello?");
         fetch(Globals.host + "getState")
             .then(results => { 
+                console.log(results);
+                console.log("hello?");
                 results.json(); 
             }).then(data => { 
 
@@ -24,7 +84,7 @@ class Dashboard extends Component {
 
                     let buyCount  = data.results[key].votes.buy.length; 
                     let holdCount = data.results[key].votes.hold.length; 
-                    let sellCount = data.results[key].votes.hold.length; 
+                    let sellCount = data.results[key].votes.sell.length; 
 
                     let price = data.results[key].price; 
                     let quantity = data.results[key].quantity; 
@@ -42,6 +102,7 @@ class Dashboard extends Component {
                 }); 
                 this.setState({stockData: ETFList}); 
             });
+            
 
     }
 
