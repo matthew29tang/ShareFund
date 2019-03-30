@@ -13,7 +13,7 @@ class indices {
         Object.defineProperty(blank, "map", {
             writable: false,
             value: callback => {
-                return this.generateBlank((key, i) => callback(blank[key], i));
+                return this.generateBlank((key, i) => callback(Object.assign(blank[key], {_key: key}), i));
             }
         });
         Object.defineProperty(blank, "reduce", {

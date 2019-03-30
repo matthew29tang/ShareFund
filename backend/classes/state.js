@@ -24,7 +24,11 @@ class state {
     toJSON() {
         const funds = this.state.funds.map(fund => {
             return {
-                votes: fund.votes.map(v => v.collect()),
+                votes: {
+                    buy: this.state.users.filter(u => u.getCurrentVotes()[fund._key] && u.getCurrentVotes()[fund._key].vote === 1).length,
+                    hold: this.state.users.filter(u => u.getCurrentVotes()[fund._key] && u.getCurrentVotes()[fund._key].vote === 0).length,
+                    sell: this.state.users.filter(u => u.getCurrentVotes()[fund._key] && u.getCurrentVotes()[fund._key].vote === -1).length
+                },
                 price: fund.price,
                 quantity: fund.quantity
             }
