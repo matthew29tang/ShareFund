@@ -76,7 +76,6 @@ class Dashboard extends Component {
         fetch(Globals.host + "getState")
             .then(results => { 
                 console.log(results);
-                console.log("hello?");
                 results.json(); 
             }).then(data => { 
 
