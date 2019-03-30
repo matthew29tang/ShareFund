@@ -7,7 +7,7 @@ class user {
         this.password = password;
         this.id = Math.round(Math.random() * 100000);
         this.history = new indices().generateBlank(() => []);
-        this.currentVote = new indices().generateBlank(() => null);
+        this.currentVotes = new indices().generateBlank(() => null);
     }
 
     authenticate(username, password) {
@@ -15,24 +15,28 @@ class user {
     }
 
     vote(index, v) {
-        this.currentVote[index] = new vote(v);
+        this.currentVotes[index] = new vote(v);
     }
 
-    calculateAverageWeights(index) {
+    _calculateAverageWeights(index) {
         return this.history[index].forEach(v => v.getWeight()).reduce((a, b) => a + b);
     }
 
-    calculateWeight() {
+    _calculateAveragePrice(index) {
+
+    }
+
+    calculateWeight(price) { // Current price
 
     }
 
     getCurrentVotes() {
-        return this.currentVote;
+        return this.currentVotes;
     }
 
-    executeVote(index) {
-        this.history[index].push(this.currentVote[index]);
-        this.currentVote[index] = null;
+    executeVote(index, price) {
+        this.history[index].push(this.currentVotes[index]);
+        this.currentVotes[index] = null;
     }
 }
 
