@@ -4,7 +4,9 @@ const getEvents = (state) => {
     }
 
     const login = (req, res) => {
-        const user = state.collect().users.find(u => u.authenticate(req.username, req.password));
+        const user = state.collect().users.find(u => {
+            return u.authenticate(req.username, req.password)
+        });
         res.send({
             id: user ? user.id : -1
         });
@@ -26,7 +28,7 @@ const getEvents = (state) => {
     }
     
     const getstate = (req, res) => {
-        res.send(state.collect());
+        res.send(state.toJSON());
     }
 
     const events = {
@@ -34,6 +36,8 @@ const getEvents = (state) => {
         vote: vote,
         getstate: getstate
     }
+
+    return events;
 }
 
 module.exports = getEvents;

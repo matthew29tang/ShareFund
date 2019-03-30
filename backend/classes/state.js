@@ -18,6 +18,10 @@ class state {
     }
 
     collect() {
+        return this.state;
+    }
+
+    toJSON() {
         const funds = this.state.funds.map(fund => {
             return {
                 votes: fund.votes.map(v => v.collect()),
