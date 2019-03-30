@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 export default class ETFComponent extends Component {
     constructor(props) {
@@ -26,16 +26,16 @@ export default class ETFComponent extends Component {
             <div className="d-flex flex-column">
 
             <ButtonGroup toggle className="mt-3">
-                <togglebutton type="radio" name="radio" defaultchecked value="1">
+                <ToggleButton type="radio" name="radio" value="1">
                     Buy - {this.props.buyCount}
-                </togglebutton>
-                <togglebutton type="radio" name="radio" value="2">
+                </ToggleButton>
+                <ToggleButton type="radio" name="radio" value="2">
                     Hold - {this.props.holdCount}
-                </togglebutton>
-                <togglebutton type="radio" name="radio" value="3">
+                </ToggleButton>
+                <ToggleButton type="radio" name="radio" value="3">
                     Sell - {this.props.sellCount}
-                </togglebutton>
-                </buttongroup>
+                </ToggleButton>
+                </ButtonGroup>
             </div>
 
             {/*

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './Dashboard.css';
-
+import Globals from './globals.js'
 import ETFComponent from './ETFComponent';
 
 class Dashboard extends Component {
@@ -16,7 +15,7 @@ class Dashboard extends Component {
     componentDidMount() { 
         
         //fetch the result from the api. 
-        fetch("./getState")
+        fetch(Globals.host + "getState")
             .then(results => { 
                 results.json(); 
             }).then(data => { 
@@ -32,17 +31,15 @@ class Dashboard extends Component {
                     let equity   = quantity * price; 
                     
                     return (<ETFComponent
-                                etfname="{key}" 
-                                quantity="{quantity}" 
-                                equity="{equity}" 
-                                buyCount="{buyCount}" 
-                                holdCount="{holdCount}" 
-                                sellCount="{sellCount}" 
+                                etfname={key}
+                                quantity={quantity}
+                                equity={equity} 
+                                buyCount={buyCount} 
+                                holdCount={holdCount}
+                                sellCount={sellCount}
                             />); 
-                                
 
                 }); 
-
                 this.setState({stockData: ETFList}); 
             });
 
@@ -50,12 +47,10 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="Dashboard">
-
-
-
-
-
+      <div className="dash-wrapper">
+        <div className="container"> 
+            {this.state.stockData}
+        </div> 
       </div>
     );
   }
