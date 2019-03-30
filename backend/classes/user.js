@@ -21,6 +21,19 @@ class user {
     calculateAverageWeights(index) {
         return this.history[index].forEach(v => v.getWeight()).reduce((a, b) => a + b);
     }
+
+    calculateWeight() {
+
+    }
+
+    getCurrentVotes() {
+        return this.currentVote;
+    }
+
+    executeVote(index) {
+        this.history[index].push(this.currentVote[index]);
+        this.currentVote[index] = null;
+    }
 }
 
 module.exports = user;
