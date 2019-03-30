@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, ButtonGroup, ToggleButton } from "react-bootstrap";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 
 export default class ETFComponent extends Component {
     constructor(props) {
