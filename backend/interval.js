@@ -1,6 +1,6 @@
 const user = require("./classes/user");
 const interval = () => {
-    const dayLength = 1 * 1000;
+    const dayLength = 8 * 1000;
     let day = 2;
     let month = 5;
     let year = 2018;
@@ -10,6 +10,7 @@ const interval = () => {
     const data = require("./data.json");
     const ai = require("./ai.json");
     const useAI = true;
+    console.log("Each simulation day will take " + dayLength / 1000 + " seconds in real time.");
 
     const tick = (state) => {
         genUsers(state);
@@ -31,16 +32,16 @@ const interval = () => {
 
     const genUsers = (state) => {
         //state.state.users = []
-        for (i = 0; i < 7; i++) {
-            state.state.users.push(new user("User "+ i, 123456));
+        for (i = 1; i <= 7; i++) {
+            state.state.users.push(new user("Random "+ i, 123456));
         }
         if (useAI) state.state.users.push(new user("AI", 1337));
     }
 
     const getTestVotes = (s) => {
         const efts = ['VAW', 'VFH', 'VGT', 'VHT', 'VIS', 'VNQ', 'VPU']
-        const users = s.state.users; 
-
+        let users = s.state.users; 
+        users = users.slice(3); //Remove the real users from giving them test votes
         for (u in users) {
             for (i = 0; i < 7; i++) {
                 s.state.funds[efts[i]].votes.push(users[u].vote(efts[i], randInt()));
@@ -101,7 +102,8 @@ const interval = () => {
                 const vote = user.getCurrentVotes()[index];
                 const weight =  userWeights[person];
                 user.executeVote(index, price, weight);
-                total += vote.collect().vote * weight;
+                if (vote === null) total += 0;
+                else total += vote.collect().vote * weight;
                 totalWeight += weight;
             }
             const action = Math.round((total / totalWeight + 1) * state.state.funds[index].quantity);

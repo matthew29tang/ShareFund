@@ -23,4 +23,4 @@ routes(app, currentState);
 
 interval.tick(currentState);
 
-app.listen(port, () => console.log(`Listening on port ${port}!`))
+app.listen(port, () => console.log(`Simulation starting on ${port}!`))
