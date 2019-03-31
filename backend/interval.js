@@ -1,19 +1,23 @@
 const user = require("./classes/user");
 const interval = () => {
     const dayLength = 1 * 1000;
-    let day = 1;
+    let day = 2;
     let month = 5;
     let year = 2018;
-    let date = 0;
+    let date = 23;
+    let aiDate = 1;
     const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const data = require("./data.json");
+    const ai = require("./ai.json");
+    const useAI = true;
 
     const tick = (state) => {
         genUsers(state);
         setInterval(function () {
-            getTestVotes(state);
             incrementDay();
+            getTestVotes(state);
             updateState(state);
+            //console.log(state);
             printSim(state);
         }, dayLength);
     }
@@ -26,10 +30,11 @@ const interval = () => {
     }
 
     const genUsers = (state) => {
-        state.state.users = []
-        for (i = 0; i < 20; i++) {
+        //state.state.users = []
+        for (i = 0; i < 7; i++) {
             state.state.users.push(new user("User "+ i, 123456));
         }
+        if (useAI) state.state.users.push(new user("AI", 1337));
     }
 
     const getTestVotes = (s) => {
@@ -39,6 +44,16 @@ const interval = () => {
         for (u in users) {
             for (i = 0; i < 7; i++) {
                 s.state.funds[efts[i]].votes.push(users[u].vote(efts[i], randInt()));
+            }
+        }
+        if (useAI) {
+            for (i = 0; i < 7; i++) {
+                const diff = ai[efts[i]][aiDate].price - ai[efts[i]][aiDate - 1].price;
+                let decision = 1;
+                if (diff < 0) {
+                    decision = -1;
+                }
+                s.state.funds[efts[i]].votes.push(users[users.length - 1].vote(efts[i], decision));
             }
         }
     }
@@ -58,6 +73,7 @@ const interval = () => {
             year += 1;
         }
         date += 1;
+        aiDate += 1;
     }
 
     const getStockPrices = () => {
@@ -71,6 +87,7 @@ const interval = () => {
     const updateState = (state) => {
         const RESTART_QUANT = 50;
         let userWeights = [];
+        state.updateDate(day, month, year);
         for (person in state.state.users) {
             let user = state.state.users[person];
             userWeights.push(user.calculateWeight(getStockPrices()));
