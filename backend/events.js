@@ -12,7 +12,7 @@ const getEvents = (state) => {
         const votes = state.collect().funds[req.fund].votes;
         const user = state.collect().users.find(u => u.id === req.user);
         if(!user.getCurrentVotes()[req.fund]) {
-            votes.push(user.vote(req.fund, req.vote));
+            votes.push(user.vote(req.fund, Number(req.vote)));
             res.send({
                 status: true
             });

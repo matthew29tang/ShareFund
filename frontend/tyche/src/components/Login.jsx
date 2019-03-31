@@ -6,7 +6,8 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: ""
         }
     }
 
@@ -24,7 +25,16 @@ class Login extends React.Component {
 
     submit() {
         Request.login(this.state.username, this.state.password).then(data => {
-            this.props.setUser(data.id);
+            if(data.id === -1) {
+                this.setState({
+                    error: "Your username and password do not match."
+                });
+            } else {
+                this.setState({
+                    error: ""
+                });
+                this.props.setUser(data.id);
+            }
         });
     }
 
@@ -40,6 +50,7 @@ class Login extends React.Component {
                     <label>Password</label>
                     <input type="password" onChange={ e => this.setPassword(e.target.value) } />
                 </div>
+                <div className="error">{ this.state.error }</div>
                 <input type="submit" onClick={ () => this.submit() } />
             </div>
         )
