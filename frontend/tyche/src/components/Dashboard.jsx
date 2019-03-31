@@ -36,8 +36,15 @@ class Dashboard extends React.Component {
         });
     }
 
+    setUser(user) {
+        this.setState({
+            user: user
+        });
+    }
+
     render() {
-        if(this.state.user === -1) return (<Login></Login>);
+        if(this.state.user === -1) return (<Login setUser={ user => this.setUser(user) }></Login>);
+
 
         let listComponent = this.state.stockData.map(fund=> { 
             return ( 
