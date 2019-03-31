@@ -53,7 +53,9 @@ class user {
             history: this.history.map(fund => {
                 return fund.map(v => v.collect());
             }),
-            currentVote: this.currentVote
+            currentVotes: this.currentVotes.map(v => {
+                return v !== null ? v.collect() : v;
+            })
         }
     }
 }
