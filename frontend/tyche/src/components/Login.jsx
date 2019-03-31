@@ -40,18 +40,23 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="form">
-                <h2 className="title">Log In</h2>
-                <div className="inputgroup">
-                    <label>Username</label>
-                    <input type="text" onChange={ e => this.setUsername(e.target.value) } />
+            <div className="login">
+                <div className="left"></div>
+                <div className="right">
+                    <div className="form">
+                        <h2 className="title">Sign In</h2>
+                        <div className="inputgroup">
+                            <label>Username</label>
+                            <input type="text" onChange={ e => this.setUsername(e.target.value) } />
+                        </div>
+                        <div className="inputgroup">
+                            <label>Password</label>
+                            <input type="password" onChange={ e => this.setPassword(e.target.value) } />
+                        </div>
+                        <div className="error">{ this.state.error }</div>
+                        <input type="submit" value="Sign In" onClick={ () => this.submit() } />
+                    </div>
                 </div>
-                <div className="inputgroup">
-                    <label>Password</label>
-                    <input type="password" onChange={ e => this.setPassword(e.target.value) } />
-                </div>
-                <div className="error">{ this.state.error }</div>
-                <input type="submit" onClick={ () => this.submit() } />
             </div>
         )
     }
