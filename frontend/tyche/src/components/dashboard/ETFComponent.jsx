@@ -38,6 +38,8 @@ export default class ETFComponent extends Component {
             <div className="fund">
                 <div className="name"> 
                     { this.props.etfname }
+                    <div className="fullName"> { this.props.fname }</div>
+                   
                 </div> 
                 <div className="stats"> 
                     <span>Shares - </span>{ this.props.quantity }

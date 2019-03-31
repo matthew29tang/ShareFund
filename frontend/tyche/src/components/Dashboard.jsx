@@ -37,8 +37,10 @@ class Dashboard extends React.Component {
                      index = i; 
                 }
             }
-            
-            let ETFList = Object.keys(data.funds).map(key => { 
+            let names = ["Vanguard Materials ETF", "Vanguard Financials ETF", "Vanguard Information Technology", 
+            "Vanguard Healthcare ETF", "Vanguard Industrials ETF", "Vanguard Real Estate ETF", 
+            "Vanguard Utilities ETF" ];
+            let ETFList = Object.keys(data.funds).map((key,ind) => { 
                 let buyCount  = data.funds[key].votes.buy; 
                 let holdCount = data.funds[key].votes.hold; 
                 let sellCount = data.funds[key].votes.sell; 
@@ -52,6 +54,7 @@ class Dashboard extends React.Component {
                     voted = true;
 
                 return {
+                    full_name: names[ind],
                     name: key,
                     quantity: quantity,
                     equity: equity,
@@ -77,8 +80,10 @@ class Dashboard extends React.Component {
                      index = i; 
                 }
             }
-
-            let ETFList = Object.keys(data.funds).map(key => { 
+            let names = ["Vanguard Materials ETF", "Vanguard Financials ETF", "Vanguard Information Technology", 
+            "Vanguard Healthcare ETF", "Vanguard Industrials ETF", "Vanguard Real Estate ETF", 
+            "Vanguard Utilities ETF" ];
+            let ETFList = Object.keys(data.funds).map((key,ind) => { 
                 let buyCount  = data.funds[key].votes.buy; 
                 let holdCount = data.funds[key].votes.hold; 
                 let sellCount = data.funds[key].votes.sell; 
@@ -92,6 +97,7 @@ class Dashboard extends React.Component {
                     voted = true;
 
                 return {
+                    full_name: names[ind],
                     name: key,
                     quantity: quantity,
                     equity: equity,
@@ -132,6 +138,8 @@ class Dashboard extends React.Component {
     }
 
     render() {
+
+
         if(this.state.user === -1) return (<Login setUser={ user => this.setUser(user) }></Login>);
 
         return (

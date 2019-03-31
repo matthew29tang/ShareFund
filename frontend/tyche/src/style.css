@@ -184,17 +184,22 @@ html, body {
 }
 
 .dashboard .funds .fund .name {
-    font-size: 30px;
-    position: absolute;
-    top: 30px;
+    font-size: 24px;
+    top: 15px;
     left: 20px;
     font-weight: 700;
 }
+.dashboard .funds .fund .fullName {
+    font-size: 18px;
 
+    top: 30px;
+    left: 20px;
+    font-weight: 400;
+}
 .dashboard .funds .fund .stats {
     position: absolute;
     top: 14px;
-    left: 200px;
+    left: 350px;
     font-size: 18px;
     font-weight:700;
 }
@@ -207,7 +212,7 @@ html, body {
 .dashboard .funds .fund .buttons {
     position: absolute;
     top: 20px;
-    left: 450px;
+    left: 600px;
     width: 180px;
 }
 
@@ -323,13 +328,7 @@ html, body {
     background: #111;
     color: #555;
 }
-/*
-.dashboard .funds .fund .buttons .button .disabl  { 
-    background: #222;
-    cursor: default;
-    outline: none;
-}
-*/
+
 .dateField { 
     font-size: 15px;
 }
