@@ -34,6 +34,10 @@ class Request {
     }
 
     static vote(user, fund, vote) {
+        
+        vote = parseInt(vote);
+
+
         return fetch(Request.host + "vote", {
             method: "post",
             headers: {

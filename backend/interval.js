@@ -1,8 +1,8 @@
 const user = require("./classes/user");
 const interval = () => {
     const dayLength = 1 * 1000;
-    let day = 2;
-    let month = 4;
+    let day = 1;
+    let month = 5;
     let year = 2018;
     let date = 0;
     const monthLengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
