@@ -59,7 +59,7 @@ class Chart extends React.Component {
         if(this.state.range > -1) data = data.slice(Math.max(data.length - this.state.range, 0))
 
         x.domain(extent(data, function(d) { return d.date; }));
-        y.domain([0, max(data, function(d) { return d.value; })]);
+        y.domain([0, max(data, function(d) { return d.value; }) * 1.2]);
 
         g.append("path")
             .data([data])

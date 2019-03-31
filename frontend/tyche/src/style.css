@@ -405,3 +405,66 @@ body {
     border: 1px solid #1E88E5 !important;
     background: #1E88E5;
 }
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 50px;
+}
+
+.dialog {
+    background-color: #222;
+    border-radius: 3px;
+    width: 500px;
+    height: 400px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -230px;
+    margin-left: -280px;
+}
+
+.dialog .close {
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.funddetails .symbol {
+    font-size: 35px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.funddetails .name {
+    font-size: 12px;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+}
+
+.funddetails .price {
+    font-size: 35px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.funddetails .chart {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+}
+
+.funddetails .chartcontrols {
+    position: absolute;
+    top: 300px;
+}

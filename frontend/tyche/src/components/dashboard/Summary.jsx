@@ -33,8 +33,6 @@ class Summary extends React.Component {
             currency: 'USD',
             minimumFractionDigits: 2
         });
-
-        console.log(this.processHistory(this.props.history));
           
         return (
             <div className="summary">
@@ -42,7 +40,7 @@ class Summary extends React.Component {
                     {this.props.date.month}/{this.props.date.day}/{this.props.date.year}
                 </div>
                 { formatter.format(this.getTotalEquity()) }
-                <Chart data={ this.processHistory(this.props.history) } width={ 700 } height={ 300 } detailed={ true }></Chart>
+                <Chart data={ this.processHistory(this.props.history) } width={ 1000 } height={ 300 } detailed={ true }></Chart>
             </div>
         )
     }

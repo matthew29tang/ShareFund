@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Request from '../../helpers/Request';
 import Chart from "./Chart";
+import ETFDetails from "./ETFDetails";
 
 export default class ETFComponent extends Component {
     constructor(props) {
@@ -24,10 +25,17 @@ export default class ETFComponent extends Component {
     processHistory(history) {
         return history.map(h => {
             return {
-                value: h.quantity * h.price,
+                value: h.price,
                 date: new Date(h.date.year, h.date.month - 1, h.date.day)
             }
         });
+    }
+
+    openDialog() {
+        const content = (
+            <ETFDetails history={ this.processHistory(this.props.history) } name={ this.props.etfname } fname={ this.props.fname } price={ this.props.price }></ETFDetails>
+        );
+        this.props.openDialog(content);
     }
 
     render() {
@@ -44,7 +52,7 @@ export default class ETFComponent extends Component {
             let btnClassNm = addon;
 
         return (
-            <div className="fund">
+            <div className="fund" onClick={ () => this.openDialog() }>
                 <div className="name"> 
                     { this.props.etfname }
                     <div className="fullName"> { this.props.fname }</div>

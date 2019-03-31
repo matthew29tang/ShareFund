@@ -1,6 +1,6 @@
 const user = require("./classes/user");
 const interval = () => {
-    const dayLength = 1 * 1000;
+    const dayLength = 1 * 8000;
     let day = 2;
     let month = 5;
     let year = 2018;

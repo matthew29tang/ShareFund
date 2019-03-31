@@ -4,6 +4,7 @@ import Login from "./Login";
 import Navbar from "./dashboard/Navbar";
 import Summary from "./dashboard/Summary";
 import Funds from "./dashboard/Funds";
+import Dialog from "./dashboard/Dialog";
 
 import "../style.css";
 
@@ -13,13 +14,14 @@ class Dashboard extends React.Component {
         this.state = {
             user: -1,
             stockData: [],
-            date: { 
-            } ,
+            date: {} ,
             initialList: [],
-            keyword: ""
+            keyword: "",
+            isOpen: false,
+            dialogcontent: (<div></div>)
         }
-        this.onVote = this.onVote.bind(this)
-        this.onSearch = this.onSearch.bind(this)
+        this.onVote = this.onVote.bind(this);
+        this.onSearch = this.onSearch.bind(this);
     }
     onSearch(event) { 
         let updatedList = this.state.initialList;
@@ -73,8 +75,6 @@ class Dashboard extends React.Component {
     componentDidMount() {
         setInterval(()=>{
         Request.getState().then(data => {
-            console.log(data);
-            
             let index = 0;
             for ( let i = 0; i < data.users.length; i++ ) { 
                 if (data.users[i].id === this.state.user) {
@@ -140,9 +140,20 @@ class Dashboard extends React.Component {
         });
     }
 
+    openDialog = (content) => {
+        this.setState({
+            dialogContent: content,
+            isOpen: true
+        });
+    }
+
+    closeDialog = () => {
+        this.setState({
+            isOpen: false
+        });
+    }
+
     render() {
-
-
         if(this.state.user === -1) return (<Login setUser={ user => this.setUser(user) }></Login>);
 
         return (
@@ -150,7 +161,11 @@ class Dashboard extends React.Component {
                 <Navbar logout={ () => this.logout() } onSearch={ this.onSearch }></Navbar>
 
                 <Summary stockData={ this.state.stockData } date={ this.state.date } history={ this.state.history }></Summary>
-                <Funds stockData={ this.state.stockData } user={ this.state.user } onVote={ () => this.onVote() } history={ this.state.history }></Funds>
+                <Funds stockData={ this.state.stockData } user={ this.state.user } onVote={ () => this.onVote() } history={ this.state.history } openDialog={ (fund) => this.openDialog(fund) }></Funds>
+
+                <Dialog show={ this.state.isOpen } onClose={ this.closeDialog }>
+                    { this.state.dialogContent }
+                </Dialog>
             </div>
         );
     }
