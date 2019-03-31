@@ -5,7 +5,7 @@ class Navbar extends React.Component {
         return (
             <div className="navbar">
                 <img className="logo" src="./logo.png" />
-                <input type="text" className="search" placeholder="Search" />
+                <input type="text" className="search" onChange={this.props.onSearch} placeholder="Search" />
                 <div className="logout" onClick={ this.props.logout }>Sign Out</div>
             </div>
         )

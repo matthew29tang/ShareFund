@@ -177,7 +177,6 @@ html, body {
     position: relative;
     height: 60px;
     border-radius: 3px;
-    cursor: pointer;
 }
 
 .dashboard .funds .fund:hover {
@@ -222,6 +221,7 @@ html, body {
     overflow: hidden;
     text-align: center;
     padding-top: 5px;
+    cursor: pointer;
     font-size: 13px;
 }
 
@@ -266,4 +266,70 @@ html, body {
 .dashboard .funds .fund .buttons .button:nth-child(3) span {
     background: #D32F2F;
     color: #E57373;
+}
+
+/* disabled buttons */ 
+
+
+.dashboard .funds .fund .buttons .disabl {
+    width: 50px;
+    height: 55px;
+    border-radius: 3px;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 13px;
+    cursor: default;
+}
+
+.dashboard .funds .fund .buttons .disabl span {
+    display: block;
+    width: 50px;
+    height: 25px;
+    position: absolute;
+    top: 30px;
+    padding-top: 5px;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(1) {
+    background: #222;
+    color: #FFF;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(1) span {
+    background: #111;
+    color: #555;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(2) {
+    background: #222;
+    color: #FFF;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(2) span {
+    background: #111;
+    color: #555;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(3) {
+    background: #222;
+    color: #FFF;
+}
+
+.dashboard .funds .fund .buttons .disabl:nth-child(3) span {
+    background: #111;
+    color: #555;
+}
+/*
+.dashboard .funds .fund .buttons .button .disabl  { 
+    background: #222;
+    cursor: default;
+    outline: none;
+}
+*/
+.dateField { 
+    font-size: 15px;
 }
