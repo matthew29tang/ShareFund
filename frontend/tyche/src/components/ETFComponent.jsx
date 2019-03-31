@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
-import './ETFComponent.css';
-import Globals from "./globals";
 
 export default class ETFComponent extends Component {
     constructor(props) {
@@ -12,30 +10,15 @@ export default class ETFComponent extends Component {
     }
     handleVote(e){  
         console.log(e.target.value);
-        fetch(Globals.host + "vote", {
-            method: "post",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-          
-            //make sure to serialize your JSON body
-            body: JSON.stringify({
-              fund: this.props.etfname,
-              user: Globals.UID,
-              vote: e.target.value
-            })
-          });
+        Request.vote(this.props.uid, this.props.etfname,e.target.value);
     }
 
     render() {
         return (
             <div className="ETFComponent">
-
                 <div className="ETFName"> 
                     {this.props.etfname}
                 </div> 
-
                 <div className="quantityIndicator"> 
                     {this.props.quantity}
                     <br /> 
@@ -57,21 +40,7 @@ export default class ETFComponent extends Component {
                     </ButtonGroup>
                 </div>
 
-            {/*
-
-            <div className="buyField"> 
-            Buy - {this.props.buyCount}
-            </div> 
-
-            <div className="holdFiled"> 
-            Hold - {this.props.holdCount}
-            </div> 
-
-            <div className="sellField"> 
-            Sell - {this.props.sellCount}
-            </div> 
-
-            */ } 
+            {} 
 
             </div>
         );

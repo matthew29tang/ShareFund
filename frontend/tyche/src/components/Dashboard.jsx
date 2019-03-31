@@ -1,6 +1,7 @@
 import React from "react";
 import Request from "../helpers/Request";
 import Login from "./Login";
+import ETFComponent from "./ETFComponent";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -37,7 +38,16 @@ class Dashboard extends React.Component {
 
     render() {
         if(this.state.user === -1) return (<Login></Login>);
-        return (<div></div>);
+
+        let listComponent = this.state.stockData.map(fund=> { 
+            return ( 
+            <ETFComponent etfname={fund.name} quantity={fund.quantity} 
+                equity={fund.equity} buyCount={fund.buyCount} 
+                holdCount={fund.holdCount} sellCount={fund.sellCount} 
+                uid={this.state.user}
+                />);
+        });
+        return (<div>{listComponent}</div>);
     }
 }
 
