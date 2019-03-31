@@ -69,7 +69,6 @@ const interval = () => {
     }
 
     const updateState = (state) => {
-        const MIN_WEIGHT = 0.1;
         const RESTART_QUANT = 50;
         let userWeights = [];
         for (person in state.state.users) {
@@ -83,7 +82,7 @@ const interval = () => {
             for (person in state.state.users) {
                 let user = state.state.users[person];
                 const vote = user.getCurrentVotes()[index];
-                const weight =  Math.max(MIN_WEIGHT, userWeights[person]);
+                const weight =  userWeights[person];
                 user.executeVote(index, price, weight);
                 total += vote.collect().vote * weight;
                 totalWeight += weight;
@@ -96,7 +95,7 @@ const interval = () => {
             state.state.funds[index].votes = [];
         });
         let s = "";
-        userWeights.map(w => s+= (Math.max(0.1, Math.round(w * 100)/100)) + "  ");
+        userWeights.map(w => s+= (Math.round(w * 100)/100) + "  ");
         console.log(s);   
     }
 
