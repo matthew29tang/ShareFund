@@ -11,16 +11,18 @@ class Login extends React.Component {
         }
     }
 
-    setUsername(_) {
+    setUsername(e) {
         this.setState({
-            username: _
+            username: e.target.value
         });
+        this.checkEnter(e);
     }
 
-    setPassword(_) {
+    setPassword(e) {
         this.setState({
-            password: _
-        })
+            password: e.target.value
+        });
+        this.checkEnter(e);
     }
 
     submit() {
@@ -38,6 +40,12 @@ class Login extends React.Component {
         });
     }
 
+    checkEnter(e) {
+        if (e.keyCode === 13) {
+            this.submit();
+        }
+    }
+
     render() {
         return (
             <div className="login">
@@ -47,11 +55,11 @@ class Login extends React.Component {
                         <h2 className="title">Sign In</h2>
                         <div className="inputgroup">
                             <label>Username</label>
-                            <input type="text" onChange={ e => this.setUsername(e.target.value) } />
+                            <input type="text" onKeyUp={ e => this.setUsername(e) } />
                         </div>
                         <div className="inputgroup">
                             <label>Password</label>
-                            <input type="password" onChange={ e => this.setPassword(e.target.value) } />
+                            <input type="password" onKeyUp={ e => this.setPassword(e) } />
                         </div>
                         <div className="error">{ this.state.error }</div>
                         <input type="submit" value="Sign In" onClick={ () => this.submit() } />

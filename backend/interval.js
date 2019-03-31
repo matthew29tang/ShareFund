@@ -26,21 +26,21 @@ const interval = () => {
     const printSim = (state) => {
         const d = state.collect().funds;
         for (eft in d) {
-            console.log(eft +  " price: " + d[eft].price + " \tquantity: " + d[eft].quantity + " \tequity: " + Math.round(d[eft].price * d[eft].quantity));
+            console.log(eft + " price: " + d[eft].price + " \tquantity: " + d[eft].quantity + " \tequity: " + Math.round(d[eft].price * d[eft].quantity));
         }
     }
 
     const genUsers = (state) => {
         //state.state.users = []
         for (i = 1; i <= 7; i++) {
-            state.state.users.push(new user("Random "+ i, 123456));
+            state.state.users.push(new user("Random " + i, 123456));
         }
         if (useAI) state.state.users.push(new user("AI", 1337));
     }
 
     const getTestVotes = (s) => {
         const efts = ['VAW', 'VFH', 'VGT', 'VHT', 'VIS', 'VNQ', 'VPU']
-        let users = s.state.users; 
+        let users = s.state.users;
         users = users.slice(3); //Remove the real users from giving them test votes
         for (u in users) {
             for (i = 0; i < 7; i++) {
@@ -88,7 +88,6 @@ const interval = () => {
     const updateState = (state) => {
         const RESTART_QUANT = 50;
         let userWeights = [];
-        state.updateDate(day, month, year);
         for (person in state.state.users) {
             let user = state.state.users[person];
             userWeights.push(user.calculateWeight(getStockPrices()));
@@ -100,7 +99,7 @@ const interval = () => {
             for (person in state.state.users) {
                 let user = state.state.users[person];
                 const vote = user.getCurrentVotes()[index];
-                const weight =  userWeights[person];
+                const weight = userWeights[person];
                 user.executeVote(index, price, weight);
                 if (vote === null) total += 0;
                 else total += vote.collect().vote * weight;
@@ -112,10 +111,20 @@ const interval = () => {
             else state.updateState(index, 'quantity', action);
             state.updateState(index, 'price', price);
             state.state.funds[index].votes = [];
+            state.addHistory(index, {
+                price: price,
+                quantity: Math.max(action, 0),
+                date: {
+                    day: day,
+                    month: month,
+                    year: year
+                }
+            })
         });
         let s = "";
-        userWeights.map(w => s+= (Math.round(w * 100)/100) + "  ");
-        console.log(s);   
+        userWeights.map(w => s += (Math.round(w * 100) / 100) + "  ");
+        state.updateDate(day, month, year);
+        console.log(s);
     }
 
     const getDate = () => {

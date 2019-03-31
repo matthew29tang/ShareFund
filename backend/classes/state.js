@@ -18,7 +18,8 @@ class state {
                 day: 2,
                 month: 5,
                 year: 18
-            }
+            },
+            history: new indices().generateBlank(() => [])
         }
     }
 
@@ -35,7 +36,8 @@ class state {
                     sell: this.state.users.filter(u => u.getCurrentVotes()[fund._key] && u.getCurrentVotes()[fund._key].vote === -1).length
                 },
                 price: fund.price,
-                quantity: fund.quantity
+                quantity: fund.quantity,
+                history: fund.history
             }
         });
         const users = this.state.users.map(u => u.collect());
@@ -56,6 +58,10 @@ class state {
         this.state.date['month'] = month;
         this.state.date['year'] = year;
         return this;
+    }
+
+    addHistory(index, value) {
+        this.state.history[index].push(value);
     }
 }
 
