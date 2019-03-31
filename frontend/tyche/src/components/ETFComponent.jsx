@@ -48,10 +48,10 @@ export default class ETFComponent extends Component {
                     <ToggleButton type="radio" name="radio" onClick={(e) => this.handleVote(e)} value="-1">
                         Buy - {this.props.buyCount}
                     </ToggleButton>
-                    <ToggleButton type="radio" name="radio" value="0">
+                    <ToggleButton type="radio" name="radio" onClick={(e) => this.handleVote(e)} value="0">
                         Hold - {this.props.holdCount}
                     </ToggleButton>
-                    <ToggleButton type="radio" name="radio" value="1">
+                    <ToggleButton type="radio" name="radio" onClick={(e) => this.handleVote(e)} value="1">
                         Sell - {this.props.sellCount}
                     </ToggleButton>
                     </ButtonGroup>
