@@ -1,6 +1,6 @@
 const user = require("./classes/user");
 const interval = () => {
-    const dayLength = 8 * 1000;
+    const dayLength = 1 * 1000;
     let day = 2;
     let month = 5;
     let year = 2018;
@@ -49,10 +49,15 @@ const interval = () => {
         }
         if (useAI) {
             for (i = 0; i < 7; i++) {
-                const diff = ai[efts[i]][aiDate].price - ai[efts[i]][aiDate - 1].price;
+                let diff = 0;
+                if (ai[efts[i]][aiDate] != null) {
+                    diff = ai[efts[i]][aiDate].price - ai[efts[i]][aiDate - 1].price;
+                }
                 let decision = 1;
                 if (diff < 0) {
                     decision = -1;
+                } else if (diff == 0) {
+                    decision = 0;
                 }
                 s.state.funds[efts[i]].votes.push(users[users.length - 1].vote(efts[i], decision));
             }
@@ -80,7 +85,8 @@ const interval = () => {
     const getStockPrices = () => {
         const prices = {}
         for (eft in data) {
-            prices[eft] = data[eft][date].price;
+            if (data[eft][date] == null) prices[eft] = 100;
+            else prices[eft] = data[eft][date].price;
         }
         return prices;
     }
