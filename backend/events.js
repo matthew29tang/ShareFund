@@ -1,8 +1,4 @@
 const getEvents = (state) => {
-    const _findUserById = id => {
-        return state.collect().users.find(u => u.id === id);
-    }
-
     const login = (req, res) => {
         const user = state.collect().users.find(u => {
             return u.authenticate(req.username, req.password)

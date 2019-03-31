@@ -24,7 +24,7 @@ class Login extends React.Component {
 
     submit() {
         Request.login(this.state.username, this.state.password).then(data => {
-            console.log(data);
+            this.props.setUser(data.id);
         });
     }
 
@@ -34,14 +34,16 @@ class Login extends React.Component {
                 <h2 className="title">Log In</h2>
                 <div className="inputgroup">
                     <label>Username</label>
-                    <input type="text" onChange={ val => this.setUsername(val) } />
+                    <input type="text" onChange={ e => this.setUsername(e.target.value) } />
                 </div>
                 <div className="inputgroup">
                     <label>Password</label>
-                    <input type="password" onChange={ val => this.setPassword(val) } />
+                    <input type="password" onChange={ e => this.setPassword(e.target.value) } />
                 </div>
                 <input type="submit" onClick={ () => this.submit() } />
             </div>
         )
     }
 }
+
+export default Login;
