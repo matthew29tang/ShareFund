@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
     onSearch(event) { 
         let updatedList = this.state.initialList;
         updatedList = updatedList.filter(function(item){
-          return item.name.toLowerCase().search(
+          return item.full_name.toLowerCase().search(
             event.target.value.toLowerCase()) !== -1;
         });
         this.setState({stockData: updatedList, keyword: event.target.value.toLowerCase() });
@@ -118,7 +118,7 @@ class Dashboard extends React.Component {
                 let updatedList = this.state.initialList;
                 let keyword = this.state.keyword;
                 updatedList = updatedList.filter(function(item){
-                    return item.name.toLowerCase().search(
+                    return item.full_name.toLowerCase().search(
                       keyword) !== -1;
                   });
                   this.setState({stockData: updatedList});
