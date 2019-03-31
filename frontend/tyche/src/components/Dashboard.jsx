@@ -1,15 +1,11 @@
 import React from "react";
 import Request from "../helpers/Request";
 import Login from "./Login";
-<<<<<<< HEAD
 import Navbar from "./dashboard/Navbar";
 import Summary from "./dashboard/Summary";
 import Funds from "./dashboard/Funds";
 
 import "../style.css";
-=======
-import ETFComponent from "./ETFComponent";
->>>>>>> 5d40599d4f38c7a06ca63e59634d240afa1cb79e
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -22,10 +18,6 @@ class Dashboard extends React.Component {
     }
 
     onVote() { 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d40599d4f38c7a06ca63e59634d240afa1cb79e
         Request.getState().then(data => { 
             let ETFList = Object.keys(data.funds).map(key => { 
                 let buyCount  = data.funds[key].votes.buy; 
@@ -73,16 +65,16 @@ class Dashboard extends React.Component {
             this.setState({stockData: ETFList}); 
         });
     }
-    
-    setUser(user) {
-        this.setState({
-            user: user
-        });
-    }
 
     logout() {
         this.setState({
             user: -1
+        });
+    }
+    
+    setUser(user) {
+        this.setState({
+            user: user
         });
     }
 
