@@ -11,7 +11,7 @@ class Funds extends React.Component {
                         equity={fund.equity} buyCount={fund.buyCount} 
                         holdCount={fund.holdCount} sellCount={fund.sellCount} 
                         uid={this.props.user} key={i} onVote={this.props.onVote} 
-                        price={fund.price} voted={fund.checked} fname={fund.full_name}
+                        price={fund.price} voted={fund.checked} fname={fund.full_name} history={this.props.history[fund.name]}
                         />);
                 }) }
             </div>

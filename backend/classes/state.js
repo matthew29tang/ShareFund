@@ -36,15 +36,15 @@ class state {
                     sell: this.state.users.filter(u => u.getCurrentVotes()[fund._key] && u.getCurrentVotes()[fund._key].vote === -1).length
                 },
                 price: fund.price,
-                quantity: fund.quantity,
-                history: fund.history
+                quantity: fund.quantity
             }
         });
         const users = this.state.users.map(u => u.collect());
         return {
             funds: funds,
             users: users,
-            date: this.state.date
+            date: this.state.date,
+            history: this.state.history
         }
     }
 

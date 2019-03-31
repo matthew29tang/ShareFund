@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Request from '../../helpers/Request';
+import Chart from "./Chart";
 
 export default class ETFComponent extends Component {
     constructor(props) {
@@ -20,8 +21,16 @@ export default class ETFComponent extends Component {
         }
     }
 
+    processHistory(history) {
+        return history.map(h => {
+            return {
+                value: h.quantity * h.price,
+                date: new Date(h.date.year, h.date.month - 1, h.date.day)
+            }
+        });
+    }
+
     render() {
-        
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -62,9 +71,9 @@ export default class ETFComponent extends Component {
                         <span>{ this.props.sellCount }</span>
                     </div>
                 </div>
-
-            {} 
-
+                <div className="etfchart">
+                    <Chart data={ this.processHistory(this.props.history) } width={ 120 } height={ 60 } detailed={ false }></Chart>
+                </div>
             </div>
         );
     }

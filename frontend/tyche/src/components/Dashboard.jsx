@@ -73,6 +73,7 @@ class Dashboard extends React.Component {
     componentDidMount() {
         setInterval(()=>{
         Request.getState().then(data => {
+            console.log(data);
             
             let index = 0;
             for ( let i = 0; i < data.users.length; i++ ) { 
@@ -108,8 +109,10 @@ class Dashboard extends React.Component {
                     checked: voted
                 }
             }); 
+            let history = data.history;
             this.setState({date: data.date}); 
             this.setState({stockData: ETFList, initialList: ETFList}); 
+            this.setState({history: history})
 
             if (this.state.keyword !== "") { 
                 let updatedList = this.state.initialList;
@@ -144,10 +147,10 @@ class Dashboard extends React.Component {
 
         return (
             <div className="dashboard">
-                <Navbar logout={ () => this.logout() } onSearch={this.onSearch}></Navbar>
+                <Navbar logout={ () => this.logout() } onSearch={ this.onSearch }></Navbar>
 
-                <Summary stockData={ this.state.stockData } date={this.state.date}></Summary>
-                <Funds stockData={ this.state.stockData } user={ this.state.user } onVote={ () => this.onVote() }></Funds>
+                <Summary stockData={ this.state.stockData } date={ this.state.date } history={ this.state.history }></Summary>
+                <Funds stockData={ this.state.stockData } user={ this.state.user } onVote={ () => this.onVote() } history={ this.state.history }></Funds>
             </div>
         );
     }

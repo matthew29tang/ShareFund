@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-html, body {
+html,
+body {
     background: #222;
     margin: 0;
     padding: 0;
@@ -64,18 +65,21 @@ html, body {
     margin-bottom: 10px;
 }
 
-.form input[type="text"], .form input[type="password"] {
+.form input[type="text"],
+.form input[type="password"] {
     width: calc(100% - 12px);
     height: 30px;
     background: #f2f2f2;
     border: 1px solid #f2f2f2;
 }
 
-.form input[type="text"]:hover, .form input[type="password"]:hover {
+.form input[type="text"]:hover,
+.form input[type="password"]:hover {
     border: 1px solid #ddd;
 }
 
-.form input[type="text"]:focus, .form input[type="password"]:focus {
+.form input[type="text"]:focus,
+.form input[type="password"]:focus {
     border: 1px solid #1E88E5;
 }
 
@@ -106,7 +110,7 @@ html, body {
 }
 
 .dashboard {
-    width: 800px;
+    width: 1000px;
     margin: 0 auto;
 }
 
@@ -189,6 +193,7 @@ html, body {
     left: 20px;
     font-weight: 700;
 }
+
 .dashboard .funds .fund .fullName {
     font-size: 18px;
 
@@ -196,12 +201,13 @@ html, body {
     left: 20px;
     font-weight: 400;
 }
+
 .dashboard .funds .fund .stats {
     position: absolute;
     top: 14px;
     left: 350px;
     font-size: 18px;
-    font-weight:700;
+    font-weight: 700;
 }
 
 .dashboard .funds .fund .stats span {
@@ -273,7 +279,7 @@ html, body {
     color: #E57373;
 }
 
-/* disabled buttons */ 
+/* disabled buttons */
 
 
 .dashboard .funds .fund .buttons .disabl {
@@ -329,6 +335,73 @@ html, body {
     color: #555;
 }
 
-.dateField { 
+.dashboard .funds .fund .etfchart {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.dateField {
     font-size: 15px;
+}
+
+.chart {
+    display: block;
+}
+
+.chart .line {
+    fill: none;
+    stroke: #1E88E5;
+    stroke-width: 3;
+}
+
+.chart .overlay {
+    fill: none;
+    pointer-events: all;
+}
+
+.chart .dot {
+    fill: #1E88E5;
+    stroke: #fff;
+}
+
+.chart .focus circle {
+    fill: none;
+    stroke: steelblue;
+}
+
+.chart .xAxis line, .chart .yAxis line {
+  stroke: #666;
+}
+
+.chart .xAxis path, .chart .yAxis path {
+  stroke: #666;
+}
+
+.chart .xAxis text, .chart .yAxis text {
+  fill: #666;
+}  
+
+.chartcontrols .button {
+    padding: 5px 10px;
+    font-size: 15px;
+    display: inline-block;
+    background: #333;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+    border: 1px solid #333;
+}
+
+.chartcontrols .button:hover {
+    border: 1px solid #444;
+}
+
+.chartcontrols .button.active {
+    border: 1px solid #1E88E5;
+}
+
+.chartcontrols .button.current {
+    border: 1px solid #1E88E5 !important;
+    background: #1E88E5;
 }
