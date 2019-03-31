@@ -20,7 +20,7 @@ class user {
     }
 
     _calculateAverageWeights(index) {
-        return this.history[index].forEach(v => v.getWeight()).reduce((a, b) => a + b);
+        return this.history[index].map(v => v.getWeight()).reduce((a, b) => a + b);
     }
 
     _calculateAveragePrice(index) {
@@ -30,7 +30,7 @@ class user {
 
     calculateWeight(prices) { // Current prices
         if(!Object.keys(this.history).reduce((a, b) => a && this.history[b].length > 0, true)) return 0.5;
-        const rawWeight = Object.keys(prices).map(i => (this._calculateAveragePrice(i) - prices[i]) * this._calculateAverageWeights(i));
+        const rawWeight = Object.keys(prices).map(i => (prices[i]/this._calculateAveragePrice(i)) * this._calculateAverageWeights(i));
         const avgWeight = rawWeight.reduce((a, b) => a + b) / rawWeight.length;
         return 1 / (1 + Math.exp(-avgWeight));
     }
@@ -40,9 +40,11 @@ class user {
     }
 
     executeVote(index, price, weight) {
-        this.currentVotes[index].execute(price, weight);
-        this.history[index].push(this.currentVotes[index]);
-        this.currentVotes[index] = null;
+        if(this.currentVotes[index]) {
+            this.currentVotes[index].execute(price, weight);
+            this.history[index].push(this.currentVotes[index]);
+            this.currentVotes[index] = null;
+        }
     }
 
     collect() {
