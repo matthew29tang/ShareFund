@@ -19,6 +19,13 @@ export default class ETFComponent extends Component {
     }
 
     render() {
+
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+          })
+          
         return (
             <div className="fund">
                 <div className="name"> 
@@ -27,7 +34,9 @@ export default class ETFComponent extends Component {
                 <div className="stats"> 
                     <span>Shares - </span>{ this.props.quantity }
                     <br />
-                    <span>Equity - </span>${ this.props.equity } 
+                    <span>Equity - </span>{ formatter.format(this.props.equity) } 
+                    <br />
+                    <span>Price - </span>{ formatter.format(this.props.price)} 
                 </div> 
                 <div className="buttons">
                     <div className="button" onClick={ () => this.handleVote(1) }>

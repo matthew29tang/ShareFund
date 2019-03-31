@@ -9,7 +9,7 @@ const port = 8080;
 const cors = require('cors');
 const state = require("./classes/state");
 
-//const interval = require("./interval")();
+const interval = require("./interval")();
 
 const currentState = new state();
 app.use(cors());

@@ -6,12 +6,18 @@ class Summary extends React.Component {
     }
 
     render() {
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+          })
+          
         return (
             <div className="summary">
-                <div className="date">
-                    {this.props.date.day}/{this.props.date.month}/{this.props.date.year}
+                <div className="dateField">
+                    {this.props.date.month}/{this.props.date.day}/{this.props.date.year}
                 </div>
-                ${ this.getTotalEquity() }
+                { formatter.format(this.getTotalEquity()) }
             </div>
         )
     }

@@ -36,7 +36,8 @@ class Dashboard extends React.Component {
                     equity: equity,
                     buyCount: buyCount,
                     holdCount: holdCount,
-                    sellCount: sellCount
+                    sellCount: sellCount,
+                    price: price
                 }
             }); 
             this.setState({stockData: ETFList}); 
@@ -45,6 +46,7 @@ class Dashboard extends React.Component {
 
 
     componentDidMount() {
+        setInterval(()=>{
         Request.getState().then(data => { 
             let ETFList = Object.keys(data.funds).map(key => { 
                 let buyCount  = data.funds[key].votes.buy; 
@@ -61,13 +63,16 @@ class Dashboard extends React.Component {
                     equity: equity,
                     buyCount: buyCount,
                     holdCount: holdCount,
-                    sellCount: sellCount
+                    sellCount: sellCount,
+                    price: price
                 }
             }); 
-
+            console.log("yeet");
             this.setState({date: data.date}); 
             this.setState({stockData: ETFList}); 
         });
+
+        }, 1000);
     }
 
     logout() {
