@@ -12,7 +12,9 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {
             user: -1,
-            stockData: []
+            stockData: [],
+            date: { 
+            } 
         }
         this.onVote = this.onVote.bind(this)
     }
@@ -62,6 +64,8 @@ class Dashboard extends React.Component {
                     sellCount: sellCount
                 }
             }); 
+
+            this.setState({date: data.date}); 
             this.setState({stockData: ETFList}); 
         });
     }
@@ -84,7 +88,8 @@ class Dashboard extends React.Component {
         return (
             <div className="dashboard">
                 <Navbar logout={ () => this.logout() }></Navbar>
-                <Summary stockData={ this.state.stockData }></Summary>
+
+                <Summary stockData={ this.state.stockData } date={this.state.date}></Summary>
                 <Funds stockData={ this.state.stockData } user={ this.state.user } onVote={ () => this.onVote() }></Funds>
             </div>
         );

@@ -8,6 +8,9 @@ class Summary extends React.Component {
     render() {
         return (
             <div className="summary">
+                <div className="date">
+                    {this.props.date.day}/{this.props.date.month}/{this.props.date.year}
+                </div>
                 ${ this.getTotalEquity() }
             </div>
         )
