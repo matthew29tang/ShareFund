@@ -32,7 +32,7 @@ class user {
         if(!Object.keys(this.history).reduce((a, b) => a && this.history[b].length > 0, true)) return 0.5;
         const rawWeight = Object.keys(prices).map(i => (prices[i]/this._calculateAveragePrice(i)) * this._calculateAverageWeights(i));
         const avgWeight = rawWeight.reduce((a, b) => a + b) / rawWeight.length;
-        return 1 / (1 + Math.exp(-0.1 * avgWeight));
+        return Math.max(0.1, 1 / (1 + Math.exp(-0.1 * avgWeight)));
     }
 
     getCurrentVotes() {
